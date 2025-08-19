@@ -1,69 +1,89 @@
-# React + TypeScript + Vite
+# EZ Stocks 📈
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A clean, modern stock tracking application built with React and TypeScript. Monitor your favorite stocks with real-time data from the Finnhub API.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Current Features ✅
+- **Real-time Stock Data**: Live price updates, daily changes, and percentage changes
+- **Clean UI**: Dark mode interface with responsive design
+- **Multiple Stock Support**: Track multiple stocks simultaneously
+- **Local Storage**: Your stock list persists between sessions
 
-## Expanding the ESLint configuration
+### Planned Features 🚧
+- **Sorting**: Sort stocks by price, change, percentage, or alphabetically
+- **Add/Remove Stocks**: Easy stock management with search functionality
+- **Portfolio Tracking**: Track positions, quantities, and P&L
+- **Advanced Analytics**: Charts, historical data, and performance metrics
+- **Alerts**: Price alerts and notifications
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Frontend**: React 19 + TypeScript
+- **Styling**: Tailwind CSS
+- **Build Tool**: Vite
+- **API**: Finnhub Stock API
+- **HTTP Client**: Axios
+- **Linting**: ESLint with TypeScript support
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
+- Finnhub API key (free at [finnhub.io](https://finnhub.io))
+
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── header.tsx          # App header with logo
+│   └── stockList.tsx       # Stock list display
+├── hooks/
+│   ├── useStocks.tsx       # Stock management hook
+│   └── useStockData.tsx    # API data fetching hooks
+├── api/
+│   └── finnHub.ts          # Finnhub API client
+├── types/
+│   ├── stockQuote.ts       # Stock quote type definitions
+│   └── companyProfile.ts   # Company profile types
+├── utils.ts                # Utility functions
+└── App.tsx                 # Main app component
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## API Integration
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The app uses the Finnhub API for real-time stock data:
+- **Stock Quotes**: Current price, daily change, high/low
+- **Company Profiles**: Company information, industry, market cap
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Roadmap
+
+### Phase 1: Core Functionality
+- [x] Basic stock display
+- [x] Real-time data fetching
+- [ ] Add/remove stocks
+- [ ] Stock search
+
+### Phase 2: Enhanced Features
+- [ ] Sorting and filtering
+- [ ] Portfolio tracking
+- [ ] Position management
+- [ ] Price alerts
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
+
+## Acknowledgments
+
+- [Finnhub](https://finnhub.io) for providing the stock API
+- [Tailwind CSS](https://tailwindcss.com) for the styling framework
+- [Vite](https://vitejs.dev) for the fast build tool
+
+---
+
+**Note**: This app is for educational and personal use. Always consult with financial professionals before making investment decisions.
