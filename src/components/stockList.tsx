@@ -1,10 +1,12 @@
 
 import { useStocks } from '../hooks/useStocks';
 import { useMultipleStocks } from '../hooks/useStockData';
+import { TrashIcon } from '@heroicons/react/24/solid'
+import { useState } from 'react';
+import type { ModifyStockProps } from '../types/modifyStocksProps';
 
 
-function StockList() {
-    const [stocks] = useStocks();
+function StockList({ stocks, setStocks }: ModifyStockProps) {
 
 
     // Take in the raw price point and format it into currency
@@ -16,6 +18,11 @@ function StockList() {
     function cellColorChange(dailyChange: number) {
         return dailyChange >= 0 ? 'text-green-500' : 'text-red-500';
     }
+
+    const handleRemoveStock = (stockToRemove: string) => {
+        // Remove the stock from the stocks array
+        setStocks(prevStocks => prevStocks.filter(s => s !== stockToRemove));
+    };
 
     const { stocksData, loading, error } = useMultipleStocks(stocks);
     if (loading) {
@@ -71,7 +78,7 @@ function StockList() {
                             );
                         }
                         return (
-                            <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:dark:bg-sky-950 border-b dark:border-gray-700 border-gray-200">
+                            <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:dark:bg-sky-950 border-b dark:border-gray-700 border-gray-200" key={symbol}>
                                 <th scope="row" className="w-15 px-2 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {stockData.profile.ticker}
                                 </th>
@@ -82,7 +89,8 @@ function StockList() {
                                     {stockData.quote.d.toFixed(3)} ({stockData.quote.dp.toFixed(2)}%)
                         </td>
                                 <td className="w-10 px-2 py-2 text-center">
-                                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">X</a>
+                                    <button className="text-red-500 hover:text-red-700" onClick={() => handleRemoveStock(symbol)}>
+                                        <TrashIcon className="size-6 text-blue-500" /></button>
                                 </td>
                             </tr>
                         );

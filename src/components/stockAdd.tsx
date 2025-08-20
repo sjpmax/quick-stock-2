@@ -1,8 +1,14 @@
 import { Autocomplete, TextField } from '@mui/material';
+import { LightBulbIcon } from '@heroicons/react/24/solid'
 import { useEffect, useState } from 'react';
 import type StockOption  from '../types/stockOption';
 import secTickers from '../data/sec_tickers.json';
-function StockAdd() {
+import type { ModifyStockProps } from '../types/modifyStocksProps';
+
+
+function StockAdd({ stocks, setStocks }: ModifyStockProps) {
+    
+    const [selectedStock, setSelectedStock] = useState<StockOption | null>(null);
     const [avilableStockList, setavilableStockList] = useState<StockOption[]>([]);
 
     useEffect(() => {
@@ -10,10 +16,19 @@ function StockAdd() {
             symbol: company.ticker,
             description: company.title
         }));
-        setStockList(formatted);
+        setavilableStockList(formatted);
     }, []);
 
-    if (stockList.length === 0) return <div>Loading stocks...</div>;
+    const handleAddStock = () => {
+        if (selectedStock && !stocks.includes(selectedStock.symbol)) {
+            // Update the stocks array with the new stock
+            setStocks([...stocks, selectedStock.symbol]);
+            // Reset selection
+            setSelectedStock(null);
+        }
+    };
+
+    if (avilableStockList.length === 0) return <div>Loading stocks...</div>;
 
         return (
           <>
@@ -24,12 +39,14 @@ function StockAdd() {
                             options={avilableStockList}
                             getOptionLabel={(option) => `${option.symbol} - ${option.description}`}
                             noOptionsText="Type to search stocks..."
+                            value={selectedStock}
+                            onChange={(_, newValue) => setSelectedStock(newValue)}
                             filterOptions={(options, { inputValue }) => {
                                 
                                 return options.filter(option =>
                                     option.symbol.toLowerCase().includes(inputValue.toLowerCase()) ||
                                     option.description.toLowerCase().includes(inputValue.toLowerCase())
-                                ).slice(0, 50); // Limit to first 50 results
+                                ).slice(0, 50); // Limit to first 50 results, loading 1000+ is just insanity. 
                             }}
                   // using the MUI styles for this dumb autocomplete component.
                             sx={{
@@ -51,13 +68,11 @@ function StockAdd() {
                             }} />}
                         />
                  
-                        <button className="flex-shrink-0 bg-sky-600 hover:bg-teal-700 border-sky-600 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
+                        <button className="flex-shrink-0 bg-sky-600 hover:bg-teal-700 border-sky-600 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button" onClick={handleAddStock} >
                 Add Stock
                 </button>
                         <button className="flex-shrink-0 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-1 px-2 rounded" type="button" >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
-                            </svg>
+                            <LightBulbIcon className="size-6 text-blue-500" />
 
                 </button>
         </div>

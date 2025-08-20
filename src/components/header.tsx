@@ -1,4 +1,4 @@
-import EzStockLogo from '../../public/EzStockLogo.png?url'
+import EzStockLogo from '/EzStockLogo.png?url'
 
 function Header(){
     return (
