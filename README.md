@@ -26,6 +26,8 @@ A clean, modern stock tracking application built with React and TypeScript. Moni
 - **API**: Finnhub Stock API
 - **HTTP Client**: Axios
 - **Linting**: ESLint with TypeScript support
+- **UI Components**: Material-UI (MUI) for Autocomplete - Might utilize MUI more later
+- **Stock Data**: SEC company tickers (11,000+ US stocks)
 
 ## Getting Started
 
@@ -33,6 +35,7 @@ A clean, modern stock tracking application built with React and TypeScript. Moni
 - Node.js (v18 or higher)
 - npm or yarn
 - Finnhub API key (free at [finnhub.io](https://finnhub.io))
+- Material UI
 
 
 ## Project Structure
@@ -41,6 +44,7 @@ A clean, modern stock tracking application built with React and TypeScript. Moni
 src/
 ├── components/
 │   ├── header.tsx          # App header with logo
+│   ├── addStock.tsx        # Stock searching and adding section
 │   └── stockList.tsx       # Stock list display
 ├── hooks/
 │   ├── useStocks.tsx       # Stock management hook
@@ -49,7 +53,9 @@ src/
 │   └── finnHub.ts          # Finnhub API client
 ├── types/
 │   ├── stockQuote.ts       # Stock quote type definitions
-│   └── companyProfile.ts   # Company profile types
+│   ├── companyProfile.ts   # Company profile types
+│   ├── stockOption.ts      # Autocomplete option types
+│   └── secResponse.ts      # SEC ticker data types
 ├── utils.ts                # Utility functions
 └── App.tsx                 # Main app component
 ```
