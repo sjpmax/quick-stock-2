@@ -58,6 +58,7 @@ function StockList() {
                     </tr>
                 </thead>
                 <tbody>
+                    {/* Get the stock data for each stock from finnhub and render it in the table */}
                     {stocks.map((symbol: string) => {
                         const stockData = stocksData[symbol];
                         console.log(stockData, "stock data in list");

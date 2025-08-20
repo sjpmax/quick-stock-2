@@ -12,7 +12,15 @@ interface StockData {
 }
 
 
-// This hook fetches stock data and company profile for a given stock symbol.
+/*  
+    * This hook fetches stock data and company profile for a given stock symbol.
+    * It returns an object containing the stock quote, company profile, loading state, and any error that occurred during the fetch.
+    * 
+    * @param {string} symbol - The stock symbol to fetch data for.
+    * @returns {StockData} - An object containing stock quote, company profile, loading state, and error message.
+    */
+
+
 export function useStockData(symbol: string): StockData {
         const [data, setData] = useState<StockData>({
             quote: null,
@@ -56,7 +64,15 @@ export function useStockData(symbol: string): StockData {
     return data;
 }
 
-//this hook is to retrieve multiple stocks
+/*  
+    * This hook is to retrieve multiple stocks
+    * It takes an array of stock symbols and fetches their data concurrently.
+    * It returns an object containing the stocks data, loading state, and any error that occurred during the fetch.
+    *
+    * @param {string[]} symbols - An array of stock symbols to fetch data for.
+    * @returns {Object} - An object containing stocks data, loading state, and error message.
+    
+*/
 export function useMultipleStocks(symbols: string[]) {
     const [stocksData, setStocksData] = useState<Record<string, StockData>>({});
     const [loading, setLoading] = useState(false);
