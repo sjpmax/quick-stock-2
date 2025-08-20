@@ -9,10 +9,11 @@ A clean, modern stock tracking application built with React and TypeScript. Moni
 - **Clean UI**: Dark mode interface with responsive design
 - **Multiple Stock Support**: Track multiple stocks simultaneously
 - **Local Storage**: Your stock list persists between sessions
+- **Add/Remove Stocks**: Easy stock management with search functionality
 
 ### Planned Features 🚧
+- **Theme**: Add light and dark mode toggle. The icon is there... need to wire it up
 - **Sorting**: Sort stocks by price, change, percentage, or alphabetically
-- **Add/Remove Stocks**: Easy stock management with search functionality
 - **Portfolio Tracking**: Track positions, quantities, and P&L
 - **Advanced Analytics**: Charts, historical data, and performance metrics
 - **Alerts**: Price alerts and notifications
@@ -25,6 +26,8 @@ A clean, modern stock tracking application built with React and TypeScript. Moni
 - **API**: Finnhub Stock API
 - **HTTP Client**: Axios
 - **Linting**: ESLint with TypeScript support
+- **UI Components**: Material-UI (MUI) for Autocomplete - Might utilize MUI more later
+- **Stock Data**: SEC company tickers (11,000+ US stocks)
 
 ## Getting Started
 
@@ -32,6 +35,7 @@ A clean, modern stock tracking application built with React and TypeScript. Moni
 - Node.js (v18 or higher)
 - npm or yarn
 - Finnhub API key (free at [finnhub.io](https://finnhub.io))
+- Material UI
 
 
 ## Project Structure
@@ -40,6 +44,7 @@ A clean, modern stock tracking application built with React and TypeScript. Moni
 src/
 ├── components/
 │   ├── header.tsx          # App header with logo
+│   ├── addStock.tsx        # Stock searching and adding section
 │   └── stockList.tsx       # Stock list display
 ├── hooks/
 │   ├── useStocks.tsx       # Stock management hook
@@ -48,7 +53,9 @@ src/
 │   └── finnHub.ts          # Finnhub API client
 ├── types/
 │   ├── stockQuote.ts       # Stock quote type definitions
-│   └── companyProfile.ts   # Company profile types
+│   ├── companyProfile.ts   # Company profile types
+│   ├── stockOption.ts      # Autocomplete option types
+│   └── secResponse.ts      # SEC ticker data types
 ├── utils.ts                # Utility functions
 └── App.tsx                 # Main app component
 ```
@@ -64,10 +71,11 @@ The app uses the Finnhub API for real-time stock data:
 ### Phase 1: Core Functionality
 - [x] Basic stock display
 - [x] Real-time data fetching
-- [ ] Add/remove stocks
-- [ ] Stock search
+- [x] Add/remove stocks
+- [x] Stock search
 
 ### Phase 2: Enhanced Features
+- [ ] Light/Dark mode toggle
 - [ ] Sorting and filtering
 - [ ] Portfolio tracking
 - [ ] Position management
