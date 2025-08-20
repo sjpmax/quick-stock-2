@@ -31,26 +31,9 @@ class FinnhubAPI {
     }
 
    
-  async getCompanyProfile(symbol: string): Promise<CompanyProfile> {
-    return this.fetchFromAPI(`/stock/profile2?symbol=${symbol}`);
+    async getCompanyProfile(symbol: string): Promise<CompanyProfile> {
+        return this.fetchFromAPI(`/stock/profile2?symbol=${symbol}`);
     }
-    /*
-
-    saving these for later. I don't want to deal with it yet. 
-    
-
-  async searchSymbols(query: string): Promise<any> {
-    return this.fetchFromAPI(`/search?q=${query}`);
-  }
-
-  async getMarketNews(category: string = 'general'): Promise<any> {
-    return this.fetchFromAPI(`/news?category=${category}`);
-  }
-
-  async getCompanyNews(symbol: string, from: string, to: string): Promise<any> {
-    return this.fetchFromAPI(`/company-news?symbol=${symbol}&from=${from}&to=${to}`);
-  }
-  */
 
 }
 
@@ -61,7 +44,3 @@ export const getStockData = async (symbol: string): Promise<StockQuote> => {
 }
 
 export const getCompanyProfile = (symbol: string) => finnhubAPI.getCompanyProfile(symbol);
-/*export const searchSymbols = (query: string) => finnhubAPI.searchSymbols(query);
-export const getMarketNews = (category?: string) => finnhubAPI.getMarketNews(category);
-export const getCompanyNews = (symbol: string, from: string, to: string) => 
-finnhubAPI.getCompanyNews(symbol, from, to);*/
