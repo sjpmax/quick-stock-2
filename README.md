@@ -9,10 +9,10 @@ A clean, modern stock tracking application built with React and TypeScript. Moni
 - **Clean UI**: Dark mode interface with responsive design
 - **Multiple Stock Support**: Track multiple stocks simultaneously
 - **Local Storage**: Your stock list persists between sessions
+- **Add/Remove Stocks**: Easy stock management with search functionality
 
 ### Planned Features 🚧
 - **Sorting**: Sort stocks by price, change, percentage, or alphabetically
-- **Add/Remove Stocks**: Easy stock management with search functionality
 - **Portfolio Tracking**: Track positions, quantities, and P&L
 - **Advanced Analytics**: Charts, historical data, and performance metrics
 - **Alerts**: Price alerts and notifications
@@ -64,8 +64,8 @@ The app uses the Finnhub API for real-time stock data:
 ### Phase 1: Core Functionality
 - [x] Basic stock display
 - [x] Real-time data fetching
-- [ ] Add/remove stocks
-- [ ] Stock search
+- [x] Add/remove stocks
+- [x] Stock search
 
 ### Phase 2: Enhanced Features
 - [ ] Sorting and filtering
